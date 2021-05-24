@@ -48,7 +48,6 @@ function App() {
       objectModel.current = om
       toxicityModel.current = tm
       nudityModel.current = nm
-      console.log('nm', nm)
       console.log('loaded models')
     }
     setModel()
@@ -61,15 +60,11 @@ function App() {
       return undefined
     }
     img.addEventListener('load', async () => {
-      const [o, c, n] = await Promise.all([
-        objectModel.current?.detect(img).catch(catchIt),
-        classifyModel.current?.classify(img).catch(catchIt),
-        nudityModel.current?.classify(img).catch(catchIt)
+      await Promise.all([
+        objectModel.current?.detect(img).catch(catchIt).then(setObjectDetection),
+        classifyModel.current?.classify(img).catch(catchIt).then(setClassifyImage),
+        nudityModel.current?.classify(img).catch(catchIt).then(setNudityImage)
       ])
-      setObjectDetection(o)
-      setClassifyImage(c)
-      console.log('n', n)
-      setNudityImage(n)
     })
     img.addEventListener('error', (err) => {
       console.log(err)
