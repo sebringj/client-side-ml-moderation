@@ -26,7 +26,7 @@ function App() {
         probabilities: Float32Array;
         match: boolean;
     }[];
-}[]>()
+  }[]>()
   const toxicityModel = useRef<toxicity.ToxicityClassifier>()
   useEffect(() => {
     async function setModel() {
