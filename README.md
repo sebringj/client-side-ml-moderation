@@ -1,4 +1,4 @@
-# Tensorflow JS React Moderation example
+# Tensorflow/Typescript/React Moderation example
 
 This is a quick prototype to see how client-side ml could be used to automatically moderate content and classify it prior to sending.
 
